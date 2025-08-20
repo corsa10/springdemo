@@ -1,13 +1,25 @@
 package com.example.demo.customer;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-
 import java.time.Instant;
 
-@Comment("CRM客户")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor @Builder
+@Entity
+@Table(name="customers",
+        indexes = {
+            @Index(name = "idx_customer_email", columnList = "email"),
+            @Index(name = "idx_customer_name", columnList = "name")
+        },
+        uniqueConstraints = {
+            @UniqueConstraint(name = "uk_customer_email", columnNames = "email")
+       })
+
+@Comment("CRM 客户")
 public class Customer {
 
     @Id
