@@ -1,15 +1,13 @@
 package com.example.demo.common;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
 public class ApiResponse<T> {
     private boolean success;
     private String message;
     private T data;
 
-    @Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
     public static <T>ApiResponse<T> ok(T data) {
         return ApiResponse.<T>builder().success(true).data(data).build();
     }
